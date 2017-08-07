@@ -23,11 +23,12 @@ app.get(
       sunday: 7
     };
     const dayIndex = daysOfWeek[req.params.day.toLowerCase()];
+    res.type('application/text');
     if (dayIndex) {
-      res.status(200).end(dayIndex.toString());
+      res.status(200).end(dayIndex.toString() + '\n');
     }
     else {
-      res.status(400).end(req.params.day + ' is not a valid day!');
+      res.status(400).end(req.params.day + ' is not a valid day!\n');
     }
   }
 );
@@ -38,9 +39,11 @@ app.get(
   whose value is the concatenation of the arrays in the original object.
 */
 
+const genericError = JSON.stringify({'Error': 'Invalid request.'}) + '\n';
+
 const bodyErrorHandler = (err, req, res, next) => {
   if (err) {
-    res.status(400).end('Error: invalid request.\n');
+    res.status(400).end(genericError);
   }
 };
 
@@ -49,26 +52,22 @@ app.post(
   jsonParser,
   bodyErrorHandler,
   (req, res) => {
+    res.type('application/json');
     if (! req.body) {
-      res.status(400).end('Error: Invalid request.');
+      res.status(400).end(genericError);
     }
     else {
-      try {
-        const arrays = Object.values(req.body);
-        if (arrays.every(currentValue => Array.isArray(currentValue))) {
-          res.status(200).end(
-            JSON.stringify({'result': [].concat(...arrays)}) + '\n'
-          );
-        }
-        else {
-          res.status(400).end(JSON.stringify({
-            'Error':
-            'You submitted valid JSON, but not all values were of type Array.'
-          }) + '\n');
-        }
+      const arrays = Object.values(req.body);
+      if (arrays.every(currentValue => Array.isArray(currentValue))) {
+        res.status(200).end(
+          JSON.stringify({'result': [].concat(...arrays)}) + '\n'
+        );
       }
-      catch (error) {
-        res.status(400).end('Invalid request. Error:\n' + error.message + '\n');
+      else {
+        res.status(400).end(JSON.stringify({
+          'Error':
+          'You submitted valid JSON, but not all values were of type Array.'
+        }) + '\n');
       }
     }
   }
