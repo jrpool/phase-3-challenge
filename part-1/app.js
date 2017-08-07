@@ -33,21 +33,31 @@ app.get(
   }
 );
 
-// Handle a form submission.
+/*
+  Give a JSON string representing the conversion of the object represented
+  by the submitted JSON string into an object with 1 'result' property
+  whose value is the concatenation of the arrays in the original object.
+*/
 app.post(
-  '/',
+  '/api/array/concat',
   jsonParser,
   (req, res) => {
-    // Handle the non-personalized (information-submission) form.
-    if (req.body.firstName) {
-      // Respond with the personalized form.
-      res.send(knownForm(
-        req.body.firstName, req.body.lastName, req.body.favoriteColor
-      ));
+    const body = req.body;
+    try {
+      const bodyObject = JSON.parse(body);
+      const arrays = bodyObject.values();
+      if (arrays.every(currentValue => Array.isArray(currentValue))) {
+        res.status(200).end(JSON.stringify({'result': [].concat(...arrays)}));
+      }
+      else {
+        res.status(400).end(JSON.stringify({
+          'error':
+          'You submitted valid JSON, but not all values were of type Array.'
+        }));
+      }
     }
-    // Handle the personalized (cookie-clearing) form.
-    else if (req.body.clearInfo) {
-      res.send(anonForm());
+    catch {
+      res.status(400).end('Invalid request.');
     }
   }
 );
