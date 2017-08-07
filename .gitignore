@@ -2,6 +2,9 @@
 # https://docs.npmjs.com/cli/shrinkwrap#caveats
 node_modules
 
+# Log files
+*.log
+
 # Files specific to OS X
 .DS_Store
 

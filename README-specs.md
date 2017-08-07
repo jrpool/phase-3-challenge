@@ -19,10 +19,9 @@ Each requirement has a point value. A fully complete requirement gets full point
 
 ## General Requirements
 
-- [ ] __10:__ Solution is in a public repository called `phase-3-challenge`.
-- [ ] __10:__ Solution repository has 3 folders: `part-1`, `part-2`, and `part-3`.
-- [ ] __10:__ Solution repository inclu
-a `.gitignore` ignoring files that don't shouldn't be committed (e.g. `node_modules/`, `*.log` files).
+- [x] __10:__ Solution is in a public repository called `phase-3-challenge`.
+- [x] __10:__ Solution repository has 3 folders: `part-1`, `part-2`, and `part-3`.
+- [x] __10:__ Solution repository includes a `.gitignore` ignoring files that shouldn't be committed (e.g. `node_modules/`, `*.log` files).
 - [ ] __10:__ Parts 1 and 2 have their own `package.json` specifying dependencies.
 - [ ] __20:__ Git history shows frequent commits.
 
@@ -83,8 +82,8 @@ response content type: application/json
 - [ ] __10:__ All files are stored under the `part-1/` folder
 - [ ] __10:__ All dependencies are specified in a `package.json` file
 - [ ] __10:__ Web server can be started with `npm start` command
-- [ ] __20:__ GET requests to the `/api/days/:day` route responds with  content type `application/text`, as described in the example above
-- [ ] __80:__ POST requests to the `/api/array/concat`, concatenates the two arrays provided in the request body and responds with the result. An invalid array should return a 400 response.
+- [ ] __20:__ The server responds to GET requests to the `/api/days/:day` route with content type `application/text`, as described in the example above
+- [ ] __80:__ On POST requests to the `/api/array/concat`, the server concatenates the two arrays provided in the request body and responds with the result. An invalid array returns a 400 response.
 
 ## Part 2: Command Line Grocery Store
 
