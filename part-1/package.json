@@ -6,8 +6,8 @@
   "private": false,
   "version": "0.0.0",
   "scripts": {
-    "start": "node ./part-1/app",
-    "lint": "eslint ./part-1/app.js; exit 0"
+    "start": "node ./app",
+    "lint": "eslint ./app.js; exit 0"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
