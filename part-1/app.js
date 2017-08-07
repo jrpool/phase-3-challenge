@@ -3,7 +3,6 @@ const app = require('express')();
 const jsonParser = require('body-parser').json(
   {inflate: false, limit: 1000, strict: true, type: 'application/json'}
 );
-app.use(jsonParser);
 
 // /// ROUTES /// //
 
@@ -38,26 +37,39 @@ app.get(
   by the submitted JSON string into an object with 1 'result' property
   whose value is the concatenation of the arrays in the original object.
 */
+
+const bodyErrorHandler = (err, req, res, next) => {
+  if (err) {
+    res.status(400).end('Error: invalid request.\n');
+  }
+};
+
 app.post(
   '/api/array/concat',
   jsonParser,
+  bodyErrorHandler,
   (req, res) => {
-    const body = req.body;
-    try {
-      const bodyObject = JSON.parse(body);
-      const arrays = bodyObject.values();
-      if (arrays.every(currentValue => Array.isArray(currentValue))) {
-        res.status(200).end(JSON.stringify({'result': [].concat(...arrays)}));
-      }
-      else {
-        res.status(400).end(JSON.stringify({
-          'error':
-          'You submitted valid JSON, but not all values were of type Array.'
-        }));
-      }
+    if (! req.body) {
+      res.status(400).end('Error: Invalid request.');
     }
-    catch {
-      res.status(400).end('Invalid request.');
+    else {
+      try {
+        const arrays = Object.values(req.body);
+        if (arrays.every(currentValue => Array.isArray(currentValue))) {
+          res.status(200).end(
+            JSON.stringify({'result': [].concat(...arrays)}) + '\n'
+          );
+        }
+        else {
+          res.status(400).end(JSON.stringify({
+            'Error':
+            'You submitted valid JSON, but not all values were of type Array.'
+          }) + '\n');
+        }
+      }
+      catch (error) {
+        res.status(400).end('Invalid request. Error:\n' + error.message + '\n');
+      }
     }
   }
 );
