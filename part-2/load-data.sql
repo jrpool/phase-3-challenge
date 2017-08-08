@@ -1,6 +1,6 @@
-create temporary table seed_data (col0 text, col1 text, col2 text);
+--create temporary table seed_data (col0 text, col1 text, col2 text);
 
-copy seed_data from stdin (format csv, header);
+--copy seed_data from stdin (format csv, header);
 
 insert into sections(name)
   select distinct col2 from seed_data

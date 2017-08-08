@@ -1,18 +1,17 @@
 // Import required modules.
-const {exec} = require('child-process');
-const {makedb} = require('./dbinit');
-const {dropdb} = require('./dbdrop');
-const {seeddb} = require('./dbseed');
+const {dbinit} = require('./dbinit');
+const {dbdrop} = require('./dbdrop');
+const {dbseed} = require('./dbseed');
 
 const calledFunction = process.argv[2];
 
 // Execute the requested function, if recognized.
-if (calledFunction === 'makedb') {
-  makedb();
+if (calledFunction === 'dbinit') {
+  dbinit();
 }
-else if (calledFunction === 'dropdb') {
-  dropdb();
+else if (calledFunction === 'dbdrop') {
+  dbdrop();
 }
-else if (calledFunction === 'seeddb') {
-  seeddb('./seed-data.csv');
+else if (calledFunction === 'dbseed') {
+  dbseed('./seed-data.csv');
 }

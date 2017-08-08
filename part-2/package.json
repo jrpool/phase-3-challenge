@@ -17,10 +17,10 @@
     "mocha": ">=3.4.2"
   },
   "scripts": {
-    "dropdb": "node ./database dropdb",
+    "dbdrop": "node ./database dbdrop",
+    "dbinit": "node ./database dbinit",
+    "dbseed": "node ./database dbseed",
     "lint": "eslint *.js test/; exit 0",
-    "makedb": "node ./database makedb",
-    "seeddb": "node ./database seeddb",
     "test": "mocha --compilers js:babel-register test/*.js"
   },
   "bugs": {

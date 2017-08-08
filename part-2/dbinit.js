@@ -6,7 +6,8 @@ const {handleMessage, errorHandlerFn, messages} = require('./messages');
   Define a function that creates the grocery_store database and its owner
   and defines the schema of the database.
 */
-const makedb = () => {
+const dbinit = () => {
+
   // Create a database instance for database creation.
   const cnmake = {
     host: 'localhost',
@@ -14,6 +15,7 @@ const makedb = () => {
     database: 'postgres'
   };
   const dbmake = pgp(cnmake);
+
   // Create a database instance for schema creation.
   const cnschema = {
     host: 'localhost',
@@ -22,6 +24,7 @@ const makedb = () => {
     database: 'grocery_store'
   };
   const dbschema = pgp(cnschema);
+
   // Identify the required queries for database and owner creation.
   const queries = [
     'create role grocer login',
@@ -29,44 +32,30 @@ const makedb = () => {
     'create database grocery_store owner grocer',
     'comment on database grocery_store is \'Data of grocery store\''
   ];
+
   // Execute them.
-  dbmake.task('query[0]', task => {
-    return task.none(queries[0]);
+  dbmake.none(queries[0])
+  .then(() => {
+    dbmake.none(queries[1])
   })
   .then(() => {
-    dbmake.task('query[1]', task => {
-      return task.none(queries[1]);
-    })
+    return dbmake.none(queries[2])
   })
   .then(() => {
-    // Both return statements necessary to prevent unhandled rejection.
-    return dbmake.task('query[2]', task => {
-      return task.none(queries[2]);
-    });
+    dbmake.none(queries[3])
   })
   .then(() => {
-    dbmake.task('query[3]', task => {
-      return task.none(queries[3]);
-    })
-  })
-  .then(() => {
-    dbmake.task('dbmake-end', task => {
-      dbmake.$pool.end;
-      return handleMessage(messages, 'dbmade');
-    })
+    dbmake.$pool.end;
+    handleMessage(messages, 'dbmade');
   })
   // Create the database schema.
   .then(() => {
-    dbschema.task('dbschema', task => {
-      const queries = new pgp.QueryFile('./schema.sql');
-      return task.none(queries);
-    })
+    const queries = new pgp.QueryFile('./schema.sql');
+    dbschema.none(queries);
   })
   .then(() => {
-    dbschema.task('dbschema-end', task => {
-      pgp.end();
-      return handleMessage(messages, 'dbschemamade');
-    })
+    pgp.end();
+    handleMessage(messages, 'dbschemamade');
   })
   .catch(err => {
     pgp.end();
@@ -74,6 +63,7 @@ const makedb = () => {
       messages, 'error', errorHandlerFn(err), ['«unit»', 'dbmake-dbschema']
     );
   });
+
 };
 
-exports.makedb = makedb;
+exports.dbinit = dbinit;

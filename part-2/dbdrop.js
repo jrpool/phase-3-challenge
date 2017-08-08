@@ -3,7 +3,8 @@ const pgp = require('pg-promise')();
 const {handleMessage, errorHandlerFn, messages} = require('./messages');
 
 // Define a function that deletes the grocery_store database and its owner.
-const dropdb = () => {
+const dbdrop = () => {
+
   // Create a database instance for database and owner deletion.
   const cn = {
     host: 'localhost',
@@ -19,19 +20,13 @@ const dropdb = () => {
   ];
 
   // Delete the database and its owner.
-  db.task('dbdrop', task => {
-    return task.none(queries[0]);
+  db.none(queries[0])
+  .then(() => {
+    db.none(queries[1])
   })
   .then(() => {
-    db.task('roledrop', task => {
-      return task.none(queries[1]);
-    })
-  })
-  .then(() => {
-    db.task('dbdrop-end', task => {
-      pgp.end();
-      handleMessage(messages, 'dbdropped');
-    })
+    pgp.end();
+    handleMessage(messages, 'dbdropped');
   })
   .catch(err => {
     pgp.end();
@@ -39,6 +34,7 @@ const dropdb = () => {
       messages, 'error', errorHandlerFn(err), ['«unit»', 'dbdrop']
     );
   });
+
 };
 
-exports.dropdb = dropdb;
+exports.dbdrop = dbdrop;
