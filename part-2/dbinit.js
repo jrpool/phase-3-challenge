@@ -47,8 +47,21 @@ const makedb = () => {
       })
     })
     .catch(err => {
-      handleMessage(messages, 'error', errorHandlerFn(err), 'dbmakefail');
+      handleMessage(
+        messages, 'error', errorHandlerFn(err), ['«unit»', 'dbschema']
+      );
       pgp.end();
+      return Promise.reject('dbschema');
     });
+  })
+  .then(() => {
+    pgp.end();
+    return handleMessage(messages, 'dbschemamade');
+  })
+  .catch(err => {
+    handleMessage(
+      messages, 'error', errorHandlerFn(err), ['«unit»', 'dbmake']
+    );
+    pgp.end();
   });
 };
