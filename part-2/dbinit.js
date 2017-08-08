@@ -39,9 +39,10 @@ const makedb = () => {
     })
   })
   .then(() => {
-    dbmake.task('query[2]', task => {
+    // Both return statements necessary to prevent unhandled rejection.
+    return dbmake.task('query[2]', task => {
       return task.none(queries[2]);
-    })
+    });
   })
   .then(() => {
     dbmake.task('query[3]', task => {
@@ -74,3 +75,5 @@ const makedb = () => {
     );
   });
 };
+
+makedb();
