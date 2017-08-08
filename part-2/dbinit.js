@@ -39,6 +39,7 @@ const dbinit = () => {
     dbmake.none(queries[1])
   })
   .then(() => {
+    // Without return statement here, unhandled promise rejection.
     return dbmake.none(queries[2])
   })
   .then(() => {

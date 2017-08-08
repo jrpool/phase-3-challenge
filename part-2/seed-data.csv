@@ -36,14 +36,14 @@ Tofu,3.00,refrigerated
 Tomato Paste,.85,packaged
 Tomatoes,1.56,produce
 Whole Wheat Bread,5.94,bread
-_order,a,Punit Rathore
-_order,b,Tanner Welsh
-_order,c,Carla Bagdonas
-_order,d,Jared Grippe
-_order,e,Trevor Little
-_order,f,Carla Bagdonas
-_order,g,Jared Grippe
-_order,h,Carla Bagdonas
+_transaction,a,Punit Rathore
+_transaction,b,Tanner Welsh
+_transaction,c,Carla Bagdonas
+_transaction,d,Jared Grippe
+_transaction,e,Trevor Little
+_transaction,f,Carla Bagdonas
+_transaction,g,Jared Grippe
+_transaction,h,Carla Bagdonas
 _sale,a,Apple Cider
 _sale,a,Baguette/French Bread
 _sale,a,Croissants
