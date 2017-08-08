@@ -40,3 +40,5 @@ const dropdb = () => {
     );
   });
 };
+
+exports.dropdb = dropdb;

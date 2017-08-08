@@ -75,3 +75,5 @@ const makedb = () => {
     );
   });
 };
+
+exports.makedb = makedb;
