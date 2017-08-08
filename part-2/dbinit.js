@@ -75,5 +75,3 @@ const makedb = () => {
     );
   });
 };
-
-makedb();
