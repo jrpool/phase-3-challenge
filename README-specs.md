@@ -22,8 +22,8 @@ Each requirement has a point value. A fully complete requirement gets full point
 - [x] __10:__ Solution is in a public repository called `phase-3-challenge`.
 - [x] __10:__ Solution repository has 3 folders: `part-1`, `part-2`, and `part-3`.
 - [x] __10:__ Solution repository includes a `.gitignore` ignoring files that shouldn't be committed (e.g. `node_modules/`, `*.log` files).
-- [ ] __10:__ Parts 1 and 2 have their own `package.json` specifying dependencies.
-- [ ] __20:__ Git history shows frequent commits.
+- [x] __10:__ Parts 1 and 2 have their own `package.json` specifying dependencies.
+- [x] __20:__ Git history shows frequent commits.
 
 ## Part 1: Simple web app
 
@@ -103,7 +103,7 @@ The `store` command should support the following sub commands:
 
 ### Example Usage
 
-Note: The example output below is not exactly what you would see in reality. (Since the output would depend on the seed data that you add to your database) Use the output below as a template for how each command should display the data.
+Note: The example output below is not exactly what you would see in reality (since the output would depend on the seed data that you add to your database). Use the output below as a template for how each command should display the data.
 
 #### List all `products` from a `section`
 ```
@@ -145,10 +145,10 @@ $ ./store real-shoppers
 ```
 
 ### Requirements
-- [ ] __10:__ All files are stored under the `part-2/` folder
-- [ ] __10:__ Database schema (all `CREATE TABLE` statements) is defined in a file `schema.sql`
+- [x] __10:__ All files are stored under the `part-2/` folder
+- [x] __10:__ Database schema (all `CREATE TABLE` statements) is defined in a file `schema.sql`
 - [ ] __10:__ SQL script to insert [grocery seed data][grocery-data] and load from CSV is created in a file `load-data.sql`
-- [ ] __10:__ SQL statements to insert data into the `orders` and `shoppers` table is added to the file `load-data.sql`. (Add at least 5 rows in each table)
+- [ ] __10:__ SQL statements to insert data into the `orders` and `shoppers` table are added to the file `load-data.sql`. (Add at least 5 rows in each table)
 - [ ] __10:__ All database query functions are written in a file `database.js`, and tests for queries are written in a file `database_test.js`
 - [ ] __10:__ Tests can be run with the command `$ npm test`
 
