@@ -30,47 +30,38 @@ const makedb = () => {
     'comment on database grocery_store is \'Data of grocery store\''
   ];
   // Execute them.
-  dbmake.task('query[0]', task => {
-    return task.none(queries[0]);
-  })
-  .then(() => {
-    dbmake.task('query[1]', task => {
-      return task.none(queries[1]);
-    })
-  })
-  .then(() => {
-    dbmake.task('query[2]', task => {
-      return task.none(queries[2]);
-    })
-  })
-  .then(() => {
-    dbmake.task('query[3]', task => {
-      return task.none(queries[3]);
-    })
-  })
-  .then(() => {
-    dbmake.task('dbmake-end', task => {
+  dbmake.task('dbmake', task => {
+    return task.none(queries[0])
+    .then(() => {return task.none(queries[1]);})
+    .then(() => {return task.none(queries[2]);})
+    .then(() => {return task.none(queries[3]);})
+    .then(() => {
       dbmake.$pool.end;
       return handleMessage(messages, 'dbmade');
     })
-  })
-  // Create the database schema.
-  .then(() => {
-    dbschema.task('dbschema', task => {
-      const queries = new pgp.QueryFile('./schema.sql');
-      return task.none(queries);
+    .then(() => {
+      // Create the database schema.
+      return dbschema.task('dbschema', task => {
+        const queries = new pgp.QueryFile('./schema.sql');
+        return task.none(queries);
+      })
     })
-  })
-  .then(() => {
-    dbschema.task('dbschema-end', task => {
+    .catch(err => {
+      handleMessage(
+        messages, 'error', errorHandlerFn(err), ['«unit»', 'dbschema']
+      );
       pgp.end();
-      return handleMessage(messages, 'dbschemamade');
-    })
+      return Promise.reject('dbschema');
+    });
+  })
+  .then(() => {
+    pgp.end();
+    return handleMessage(messages, 'dbschemamade');
   })
   .catch(err => {
-    pgp.end();
     handleMessage(
-      messages, 'error', errorHandlerFn(err), ['«unit»', 'dbmake-dbschema']
+      messages, 'error', errorHandlerFn(err), ['«unit»', 'dbmake']
     );
+    pgp.end();
   });
 };
