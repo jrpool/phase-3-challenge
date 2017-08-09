@@ -76,7 +76,7 @@ To destroy the database, execute `npm run dbdrop`.
 
 To perform tests, execute `npm test`.
 
-To use the application, in another terminal window execute commands such as:
+To use the application, execute commands such as:
 
 ```
 ./store product-list produce
