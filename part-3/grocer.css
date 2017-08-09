@@ -122,7 +122,7 @@ body {
   transform: translate(-50%, -50%);
   background-color: white;
 }
-.modalbox table {
+.modalbox > table {
   border-collapse: collapse;
   border-style: solid;
   border-width: thin;

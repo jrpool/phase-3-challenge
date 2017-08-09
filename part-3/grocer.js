@@ -19,7 +19,7 @@ const cartItemCount = document.getElementById('cart-item-count');
 const modalBox = document.getElementById('modalbox');
 const boxList = document.getElementById('modallist');
 const modelCartRow = document.getElementById('rowtemplate').firstElementChild;
-const cartFooter = boxList.lastElementChild;
+const cartFooter = document.getElementById('modalfoot');
 const cartSum = document.getElementById('sum');
 
 /*
