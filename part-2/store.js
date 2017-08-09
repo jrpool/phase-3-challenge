@@ -42,6 +42,46 @@ const productList = section => {
   });
 };
 
+// Define a function that lists the transactions of a specified shopper.
+const shopperTransactions = shopper => {
+  db.func('shopper_transactions', shopper)
+  .then(result => {
+    const table = initTable([messages.headtrans, messages.headcost]);
+    fillTable(table, result, ['transaction', 'cost']);
+    console.log(table.toString());
+    pgp.end();
+  })
+  .catch(err => {
+    pgp.end();
+    handleMessage(
+      messages, 'error', errorHandlerFn(err), ['«unit»', 'shopper-transactions']
+    );
+  });
+};
+
+// Define a function that lists the transactions of a specified shopper.
+const realShoppers = () => {
+  db.func('real_shoppers')
+  .then(result => {
+    const table = initTable([messages.headshopper, messages.headtranscount]);
+    fillTable(table, result, ['shopper', 'transaction_count']);
+    console.log(table.toString());
+    pgp.end();
+  })
+  .catch(err => {
+    pgp.end();
+    handleMessage(
+      messages, 'error', errorHandlerFn(err), ['«unit»', 'real-shoppers']
+    );
+  });
+};
+
 if (args[0] === 'product-list' && args.length === 2) {
   productList(args[1]);
+}
+else if (args[0] === 'shopper-transactions' && args.length === 2) {
+  shopperTransactions(args[1]);
+}
+else if (args[0] === 'real-shoppers' && args.length === 1) {
+  realShoppers();
 }
