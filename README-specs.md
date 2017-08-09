@@ -153,14 +153,14 @@ $ ./store real-shoppers
 - [ ] __10:__ Tests can be run with the command `$ npm test`
 
 User Stories: Ensure that your schema design can satisfy the following scenarios
-- [ ] __10__: As a shopper I can fetch all my orders
-- [ ] __10__: As a shopper I can have multiple items in an order. (Assume the quantity of each item is always 1)
+- [x] __10__: As a shopper I can fetch all my orders
+- [x] __10__: As a shopper I can have multiple items in an order. (Assume the quantity of each item is always 1)
 
 Command line interface requirements
-- [ ] __10__: Create a command line Node script called `store.js`
-- [ ] __20__: Command `product-list` has been implemented
-- [ ] __40__: Command `shopper-orders` has been implemented
-- [ ] __30__: Command `real-shoppers` has been implemented
+- [x] __10__: Create a command line Node script called `store.js`
+- [x] __20__: Command `product-list` has been implemented
+- [x] __40__: Command `shopper-orders` has been implemented
+- [x] __30__: Command `real-shoppers` has been implemented
 
 Write tests with [Mocha](https://mochajs.org/) + [Chai](http://chaijs.com/) in `database_test.js` that assert:
 - [ ] __20__: The database function for the command `product-list` is tested
