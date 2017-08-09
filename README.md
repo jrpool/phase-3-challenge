@@ -92,4 +92,5 @@ In a web browser, open the file `part-3/grocer.html`.
 
 [lg]: https://www.learnersguild.org
 [npm]: https://www.npmjs.com/
+[pg]: https://www.postgresql.org/
 [specs]: https://github.com/jrpool/phase-3-challenge/blob/master/README-specs.md
