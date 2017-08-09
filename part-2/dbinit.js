@@ -36,14 +36,14 @@ const dbinit = () => {
   // Execute them.
   dbmake.none(queries[0])
   .then(() => {
-    dbmake.none(queries[1])
+    dbmake.none(queries[1]);
   })
   .then(() => {
     // Without return statement here, unhandled promise rejection.
-    return dbmake.none(queries[2])
+    return dbmake.none(queries[2]);
   })
   .then(() => {
-    dbmake.none(queries[3])
+    dbmake.none(queries[3]);
   })
   .then(() => {
     dbmake.$pool.end;

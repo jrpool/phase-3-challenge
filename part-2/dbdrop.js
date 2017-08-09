@@ -22,7 +22,7 @@ const dbdrop = () => {
   // Delete the database and its owner.
   db.none(queries[0])
   .then(() => {
-    db.none(queries[1])
+    db.none(queries[1]);
   })
   .then(() => {
     pgp.end();

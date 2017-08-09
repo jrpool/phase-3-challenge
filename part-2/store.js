@@ -8,7 +8,7 @@ const args = process.argv.slice(2);
 // Define a function that initializes a table.
 const initTable = colHeads => {
   return new Table({head: colHeads});
-}
+};
 
 // Define a function that populates an initialized table.
 const fillTable = (table, rows, columns) => {

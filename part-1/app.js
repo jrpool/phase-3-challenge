@@ -53,7 +53,7 @@ app.post(
   bodyErrorHandler,
   (req, res) => {
     res.type('application/json');
-    if (! req.body) {
+    if (!req.body) {
       res.status(400).end(genericError);
     }
     else {
