@@ -29,7 +29,7 @@ const cartSum = document.getElementById('sum');
 */
 
 /*
-  Function to return whether the modal dialog box is invisible and therefore
+  Function returning whether the modal dialog box is invisible and therefore
   other user actions get responses.
 */
 
@@ -37,65 +37,55 @@ const uiEnabled = () => {
   return modalBox.className === 'modalbox invisible';
 };
 
-// Function to respond to an item order.
+// Function responding to an item order.
 
-const addItem = (event) => {
-  // If the UI is enabled and an item button was clicked:
+const addItem = event => {
   if (uiEnabled() && event.target.tagName === 'BUTTON') {
-    // Identify the item ordered, its name, and its price.
+    // Identify the item.
     const orderedItem = event.target.parentNode;
     const itemName = orderedItem.querySelector('.item-name').textContent;
     const itemPriceText
       = orderedItem.querySelector('.item-price').textContent.substring(1);
-    /*
-      Create the selected item for the modal dialog box’s list of ordered
-      items.
-    */
+    // Add it to the modal dialog box.
     const newRow = modelCartRow.cloneNode(true);
-    // Insert it into the modal dialog box’s list.
     boxList.insertBefore(newRow, cartFooter);
-    // Populate its cells.
     newRow.firstElementChild.textContent = itemName;
     newRow.lastElementChild.textContent = '$' + itemPriceText;
-    // Update the payment total.
+    // Update the amounts.
     cartSum.textContent = (
       Number.parseFloat(cartSum.textContent, 10)
       + Number.parseFloat(itemPriceText, 10)
     ).toFixed(2);
-    // Update the item count.
     cartItemCount.textContent = (
       Number.parseInt(cartItemCount.textContent) + 1
     ).toString();
   }
 }
 
-// Function to make the modal dialog box visible.
+// Function making the modal dialog box visible.
 
-const exposeModal = (event) => {
+const exposeModal = event => {
   if (uiEnabled()) {
     modalBox.className = 'modalbox visible';
   }
 }
 
-// Function to restore the state in which no items are ordered.
+// Function reinitializing the content of the modal dialog box.
 
-const clearOrder = (event) => {
+const clearOrder = event => {
   if (! uiEnabled()) {
     let deletable;
-    // Remove the modal dialog box’s list of ordered items.
     while (deletable = boxList.querySelector('.cartrow')) {
       boxList.removeChild(deletable);
     }
-    // Make the modal dialog box’s payment total $0.
     cartSum.textContent = '0.00';
-    // Make the cart button’s item count 0.
     cartItemCount.textContent = '0';
   }
 }
 
-// Function to make the modal dialog box invisible.
+// Function making the modal dialog box invisible.
 
-const hideModal = (event) => {
+const hideModal = event => {
   if (! uiEnabled()) {
     document.getElementById('modalbox').className = 'modalbox invisible';
   }
