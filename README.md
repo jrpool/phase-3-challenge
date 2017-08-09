@@ -62,6 +62,8 @@ curl http://localhost:3000/api/array/concat -d '{"a": [1, 2, 3], "b": ["x", "y"]
 
 To stop the application, send a SIGINT signal to its process, by entering the keypress CONTROL-C in the terminal window.
 
+To perform linting, execute `npm run lint`.
+
 ### Part 2
 
 Make `part-2` your current directory.
@@ -82,13 +84,11 @@ To use the application, in another terminal window execute commands such as:
 ./store real-shoppers
 ```
 
+To perform linting, execute `npm run lint`.
+
 ### Part 3
 
 In a web browser, open the file `part-3/grocer.html`.
-
-### All parts
-
-To perform linting, in any of the 3 part directories, execute `npm run lint`.
 
 [lg]: https://www.learnersguild.org
 [npm]: https://www.npmjs.com/
