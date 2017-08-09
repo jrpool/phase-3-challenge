@@ -21,7 +21,7 @@
     "dbinit": "node ./database dbinit",
     "dbseed": "node ./database dbseed",
     "lint": "eslint *.js test/; exit 0",
-    "test": "mocha --compilers js:babel-register test/*.js"
+    "test": "mocha --compilers js:babel-register ./database_test.js"
   },
   "bugs": {
     "url": "https://github.com/jrpool/phase-3-challenge.git/issues"
