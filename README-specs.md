@@ -149,8 +149,8 @@ $ ./store real-shoppers
 - [x] __10:__ Database schema (all `CREATE TABLE` statements) is defined in a file `schema.sql`
 - [x] __10:__ SQL script to insert [grocery seed data][grocery-data] and load from CSV is created in a file `load-data.sql`
 - [x] __10:__ SQL statements to insert data into the `orders` and `shoppers` table are added to the file `load-data.sql`. (Add at least 5 rows in each table)
-- [ ] __10:__ All database query functions are written in a file `database.js`, and tests for queries are written in a file `database_test.js`
-- [ ] __10:__ Tests can be run with the command `$ npm test`
+- [x] __10:__ All database query functions are written in a file `database.js`, and tests for queries are written in a file `database_test.js`
+- [x] __10:__ Tests can be run with the command `$ npm test`
 
 User Stories: Ensure that your schema design can satisfy the following scenarios
 - [x] __10__: As a shopper I can fetch all my orders
@@ -163,9 +163,9 @@ Command line interface requirements
 - [x] __30__: Command `real-shoppers` has been implemented
 
 Write tests with [Mocha](https://mochajs.org/) + [Chai](http://chaijs.com/) in `database_test.js` that assert:
-- [ ] __20__: The database function for the command `product-list` is tested
-- [ ] __20__: The database function for the command `shopper-orders` is tested
-- [ ] __20__: The database function for the command `real-shoppers` is tested
+- [x] __20__: The database function for the command `product-list` is tested
+- [x] __20__: The database function for the command `shopper-orders` is tested
+- [x] __20__: The database function for the command `real-shoppers` is tested
 
 ## Part 3: Web interface for grocery store
 
