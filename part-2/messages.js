@@ -39,4 +39,10 @@ exports.messages = {
   'dbdropped': 'The database and its owner have been deleted.',
   'dbseeded': 'The database has been seeded with example data',
   'error': 'An error has occurred in «unit». Error message:\n',
+  'headcost': 'Total Cost',
+  'headtrans': 'Transaction ID',
+  'headprod': 'Product Name',
+  'headsec': 'Section Name',
+  'headshopper': 'Shopper Name',
+  'headtranscount': 'Number of Transactions'
 };

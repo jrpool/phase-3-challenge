@@ -56,16 +56,16 @@ comment on column sales.transaction is 'purchase event';
 comment on column sales.product is 'product of which 1 unit was included';
 
 create function section_products(
-  section integer, out product_name text, out section_name text
+  section_name_arg text, out product_name text, out section_name text
 ) returns setof record language sql stable as $$
   select products.name as product_name, sections.name as section_name
   from products, sections
-  where sections.id = section
-  and products.section = section
+  where sections.name = section_name_arg
+  and products.section = sections.id
   order by products.name;
 $$;
 
-comment on function section_products(integer) is 'In: ID of a section. Out: product names and section name of products in the section.';
+comment on function section_products(text) is 'In: name of a section. Out: product names and section name of products in the section.';
 
 create function shopper_transactions(
   shopper integer, out transaction integer, out cost text
