@@ -73,11 +73,11 @@ _sale,a,Tofu
 _sale,a,Tomato Paste
 _sale,a,Tomatoes
 _sale,a,Whole Wheat Bread
-_sale,c,Apple Cider
-_sale,c,Apples
-_sale,c,Apples
-_sale,c,Baguette/French Bread
-_sale,c,Carrots
+_sale,b,Apple Cider
+_sale,b,Apples
+_sale,b,Apples
+_sale,b,Baguette/French Bread
+_sale,b,Carrots
 _sale,c,Croissants
 _sale,c,Eggplant
 _sale,c,Eggplant

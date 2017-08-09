@@ -37,12 +37,12 @@ exports.messages = {
   'dbmade': 'The database and its owner have been created.',
   'dbschemamade': 'The database schema has been created.',
   'dbdropped': 'The database and its owner have been deleted.',
-  'dbseeded': 'The database has been seeded with example data',
+  'dbseeded': 'The database has been seeded with example data.',
   'error': 'An error has occurred in «unit». Error message:\n',
   'headcost': 'Total Cost',
-  'headtrans': 'Transaction ID',
+  'headtrans': 'Transac-\ntion ID',
   'headprod': 'Product Name',
   'headsec': 'Section Name',
   'headshopper': 'Shopper Name',
-  'headtranscount': 'Number of Transactions'
+  'headtranscount': 'Number of\nTransac-\ntions'
 };

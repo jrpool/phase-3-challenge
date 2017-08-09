@@ -13,9 +13,17 @@ const initTable = colHeads => {
 // Define a function that populates an initialized table.
 const fillTable = (table, rows, columns) => {
   for (const row of rows) {
-    table.push(columns.map(currentValue => row[currentValue]));
+    table.push(columns.map(currentValue => {
+      const cellContent = row[currentValue];
+      if (typeof cellContent === 'number') {
+        return {content: cellContent, hAlign: 'right'};
+      }
+      else {
+        return cellContent;
+      }
+    }));
   }
-}
+};
 
 // Create a database instance for database queries.
 const cn = {

@@ -68,12 +68,12 @@ $$;
 comment on function section_products(text) is 'In: name of a section. Out: product names and section name of products in the section.';
 
 create function shopper_transactions(
-  shopper integer, out transaction integer, out cost text
+  shopperarg integer, out transaction integer, out cost text
 ) returns setof record language sql stable as $$
   select transactions.id as transaction,
-  to_char(sum(products.price) / 100.0, 'FM0000.99') as cost
+  to_char(sum(products.price) / 100.0, '9999.99') as cost
   from transactions, sales, products
-  where transactions.shopper = shopper
+  where transactions.shopper = shopperarg
   and sales.transaction = transactions.id
   and products.id = sales.product
   group by transactions.id
