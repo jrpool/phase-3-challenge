@@ -57,7 +57,7 @@ Make `part-1` your current directory and execute `npm start`. In another termina
 
 ```
 curl http://localhost:3000/api/days/tuesday
-curl http://localhost:3000/api/array/concat -d '{"a": [1, 2, 3], "b": ["x", "y"]}'
+curl -H 'Content-Type: application/JSON' http://localhost:3000/api/array/concat -d '{"a": [1, 2, 3], "b": ["x", "y"]}'
 ```
 
 To stop the application, send a SIGINT signal to its process, by entering the keypress CONTROL-C in the terminal window.
