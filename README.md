@@ -17,6 +17,8 @@ Deviations or possibly deviant interpretations of the specifications include:
 
 - The part-1 application permits `:day` parameters that differ from the stored day strings in letter case. For example, “Monday” is accepted as “monday”.
 
+- An additional part-1 application is provided. It is an internationalized version of the part-1 application that inverts the request and response. The user specifies a locale and a number in the 1–7 range, and the application responds with the name of the numbered day of the week in the language of the specified locale.
+
 - In the part-2 application, the term “order” is replaced by “transaction”. The motivation is to eliminate the risk of confusion between “order” as an interface concept and “order” as a reserved word in the “order by” operator of PostgreSQL, while also avoiding a bifurcation between the interface and the source-code descriptors of the interface concept.
 
 - In the part-2 application, the specifications are interpreted (in the absence of an explicit prohibition) to permit the use of an external table-display module producing the specified format with more finished decorations.
@@ -64,6 +66,18 @@ To stop the application, send a SIGINT signal to its process, by entering the ke
 
 To perform linting, execute `npm run lint`.
 
+### Part 1 International
+
+Make `part-1int` your current directory and execute `npm start`. In another terminal window, enter commands such as:
+
+```
+curl http://localhost:3000/api/days/chr/3
+```
+
+(Response is Tuesday in Cherokee.)
+
+The locale files are courtesy of [International Components for Unicode][icu] and are located in the `icu-locales` directory.
+
 ### Part 2
 
 Make `part-2` your current directory.
@@ -90,6 +104,7 @@ To perform linting, execute `npm run lint`.
 
 In a web browser, open the file `part-3/grocer.html`.
 
+[icu]: http://site.icu-project.org/
 [lg]: https://www.learnersguild.org
 [npm]: https://www.npmjs.com/
 [pg]: https://www.postgresql.org/
