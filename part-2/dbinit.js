@@ -33,30 +33,26 @@ const dbinit = () => {
     'comment on database grocery_store is \'Data of grocery store\''
   ];
 
-  // Execute them.
+  // Create them.
   dbmake.none(queries[0])
-  .then(() => {
-    dbmake.none(queries[1]);
-  })
-  .then(() => {
-    // Without return statement here, unhandled promise rejection.
-    return dbmake.none(queries[2]);
-  })
-  .then(() => {
-    dbmake.none(queries[3]);
-  })
+  .then(() => dbmake.none(queries[1]))
+  .then(() => dbmake.none(queries[2]))
+  .then(() => dbmake.none(queries[3]))
   .then(() => {
     dbmake.$pool.end;
     handleMessage(messages, 'dbmade');
+    return '';
   })
   // Create the database schema.
   .then(() => {
     const queries = new pgp.QueryFile('./schema.sql');
     dbschema.none(queries);
+    return '';
   })
   .then(() => {
     pgp.end();
     handleMessage(messages, 'dbschemamade');
+    return '';
   })
   .catch(err => {
     pgp.end();
